@@ -1,0 +1,40 @@
+JS : 
+    Promise
+    Async, Await
+    DOM
+    Closure 
+    Prototype
+    Call, Apply, Bind
+    this
+    Hoisting
+    ES6
+        classes
+        arrow functions
+        spread and rest
+        template literals
+    Object
+    Array
+    String
+    Boolean
+JSON : 
+    let employee = {"name":"Vinay", "address":"Delhi"};
+
+NodeJS : 
+    Express
+    Middleware
+    os
+    fs 
+    exception handling
+    http / axios
+    REST APIs
+
+HTML/CSS/JS
+    Form to submit
+    
+ReactJS :
+    functional / class
+    state
+    redux state management
+    hooks
+    micro frontend
+    tailwind or bootstrap

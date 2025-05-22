@@ -1,0 +1,15 @@
+sudo mv ~/Downloads/mongodb-macos-aarch64-8.0.5/ /usr/local/mongodb
+
+nano ~/.zshrc
+
+export PATH="/usr/local/mongodb/bin:$PATH"
+
+source ~/.zshrc
+
+sudo mkdir -p /Users/lakshmikant/data/db
+
+sudo chown -R $(whoami) /Users/lakshmikant/data/db
+
+mongod --dbpath /Users/lakshmikant/data/db
+
+brew install mongosh

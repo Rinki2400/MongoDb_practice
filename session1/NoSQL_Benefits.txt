@@ -1,0 +1,33 @@
+Benefits of NoSQL
+
+1) Elastic Scaling
+- Horizontal Scaling
+- Handle large volume of data
+- Load distribution
+- Auto-sharding
+- Reduced downtime
+- Performance is improved during traffic hike
+
+2) Avoid Joins
+3) No need for a data to fit a schema
+- Flexibility in Data modeling
+- No data transformation overhead
+- Good for Unstructured and Semi Structured data
+
+4) Quick and easy development
+- schema Flexibility
+- Not much complexity
+- Agile development and Rapid iteration
+
+5) Ability to cope with Network failures
+- highly available and reliable
+- fault tolerant
+- Built-in replication
+- Partition tolerance (CAP)
+
+6) Low latency and high Performance
+
+7) Supports multiple data Structure
+
+8) Less management
+

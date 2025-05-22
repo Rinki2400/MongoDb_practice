@@ -1,0 +1,40 @@
+1) Structured Data : Relational Database
+E,g : MySQL, PostgresSQL, Oracle, SQL Server
+
+Table, rows, columns
+
+2) Semi-Structure Data : NoSQL Database
+
+let customer = {
+    "customer_id":1,
+    "first_name":"Rajesh",
+    "last_name":"Joshi",
+    "age":25
+}
+
+E,g MongoDB
+
+3) Unstructured Data : Object Storage / File Storage
+
+E,g : AWS S3.
+
+4) Polymorphic Data : Object Oriented DB or Complex Systems
+
+E,g PostgresSQL, ObjectDB.
+
+
+OLTP vs OLAP 
+
+Types 
+
+1) Key-Value
+E,g : Redis, Amazon DynamoDB
+
+2) Document-Database
+E,g : MongoDB, CouchDB
+
+3) Columnar Database
+E,g : Apache Cassandra, Hbase, Google Bigtable
+
+4) Graph Database
+E,g : Neo4J, ArangoDB
