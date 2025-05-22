@@ -1,0 +1,148 @@
+> db;
+
+> show dbs;
+
+> show databases;
+
+> var name = "Arpan"
+> print(name)
+
+> var employee = {name:"Raju"}
+> printjson(employee)
+
+// database -> collections 1 - n -> documents 1 - n
+
+CRUD
+
+C - Create
+R - Read
+U - Update
+D - Delete
+
+1) go to database (create a db or switch to the db)
+
+
+> use crud;
+> db.createCollection('students')
+> show collections;
+
+
+let student1 = {
+    "name":"Rohini",
+    "address":"India",
+    "id":1,
+    "age":22,
+    "class_id":10,
+    "phone_number":"9889988990",
+    "gender":"female"
+}
+
+// find method to see how many documents are in collection students
+
+> db.students.find()
+> db.students.insert(student1)
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('6828af0a0bbc11a717a79cb8') }
+}
+> cls; //clears the console
+
+> db.students.find()
+
+Create
+
+- db.collection.insertOne(document)
+- db.collection.insertMany([document1,document2,document3...., documentN])
+
+
+{
+    "name":"Sheetal",
+    "address":"India",
+    "id":2,
+    "age":22,
+    "class_id":10,
+    "phone_number":"98892288990",
+    "gender":"female"
+}
+
+
+db.students.insertMany([
+    {
+    "name":"Mohit",
+    "address":"India",
+    "id":3,
+    "age":22,
+    "class_id":10,
+    "phone_number":"92892288990",
+    "gender":"male"
+},
+   {
+    "name":"Deepanjali",
+    "address":"India",
+    "id":4,
+    "age":22,
+    "class_id":10,
+    "phone_number":"95892288990",
+    "gender":"female"
+},
+{
+    "name":"Hamidur",
+    "address":"India",
+    "id":5,
+    "age":22,
+    "class_id":10,
+    "phone_number":"95792288990",
+    "gender":"male"
+}
+
+])
+
+
+Read
+
+> db.collection.find()
+> db.collection.findOne()
+> db.collection.find(query)
+> db.collection.find(query, projection)
+> db.collection.findOne(query)
+
+
+db.students.find({gender:"female"})
+db.students.find({gender:"male"})
+db.students.find({gender:"male"},{name:1,address:1})
+
+
+Update
+
+//Syntax
+> db.collection.updateOne(filter,update)
+> db.collection.updateMany(filter,update)
+
+db.students.find({ name: 'Rohini'})
+
+db.students.updateOne({ name: 'Rohini'},{$set :{phone_number:"9773770202"}})
+
+db.students.updateMany({ gender: 'female'},{$set :{quota:true}})
+
+
+Delete
+
+> db.collection.deleteOne(filter)
+> db.collection.deleteMany(filter)
+
+db.students.deleteOne({name:"Rohini"})
+db.students.deleteOne({gender:'male'})
+db.students.deleteMany({gender:'female'})
+
+// Drop/delete collection
+
+db.students.drop();
+show dbs;
+
+
+// limit records shown or retrieved
+ db.students.find().limit(2)
+
+ // skip the records before displaying remaining or as per limit
+ db.students.find().skip(1)

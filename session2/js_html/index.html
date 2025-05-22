@@ -1,0 +1,25 @@
+<!-- Buttons using inline onclick -->
+<h3>Inline Buttons</h3>
+<button onclick="changeText()">Click Me)</button>
+
+<p id="demo">Hello</p>
+
+<!-- Parent container for delegated buttons -->
+<h3>Delegated Buttons</h3>
+<div id="parent">
+  <button>Delegated Button</button>
+</div>
+
+<script>
+  // Function used by inline buttons
+  function changeText() {
+    document.getElementById("demo").innerText = "Text Changed!";
+  }
+
+  // Event Delegation for buttons inside #parent
+  document.getElementById("parent").addEventListener("click", function (event) {
+    if (event.target.tagName === "BUTTON") {
+      console.log("Delegated button clicked: " + event.target.innerText);
+    }
+  });
+</script>
