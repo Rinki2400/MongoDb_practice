@@ -1,0 +1,64 @@
+// Operators 
+
+$set, $unset, $inc, $mul, $min, $max
+
+db.train_bookings.find({"name":"Priya Sharma"})
+
+db.train_bookings.updateOne({"name":"Priya Sharma"},{$unset:{coach:""}})
+
+db.employee.insertOne({"name":"Arpan","salary":2000000})
+
+db.employee.updateOne({"name":"Arpan"},{$inc:{salary:100000}})
+
+// 100 => 100 * 1.1 => 110
+
+db.employee.updateOne({"name":"Arpan"},{$mul:{salary:1.1}})
+
+
+// Array Operators
+
+// let numbers = [2,4,6,7,8,9];
+
+$push, $pop, $pull, $pullAll, $addToSet
+
+use ecom;
+
+// after db.ecom_orders.insertMany
+
+show collections;
+
+db.ecom_orders.find()
+
+db.ecom_orders.find({order_id: "ORD1001"})
+
+db.ecom_orders.updateOne({order_id: "ORD1001"}, {$push:{items:"Screen Protector"}})
+
+db.ecom_orders.find({order_id: "ORD1004"})
+
+db.ecom_orders.updateOne({order_id: "ORD1004"},{$pop:{items:1}})
+
+db.ecom_orders.updateOne({order_id:"ORD1008"},{$pop:{items:-1}})
+
+db.ecom_orders.updateOne({order_id:"ORD1006"},{$pull:{items:"speaker"}})
+
+db.ecom_orders.updateOne({order_id:"ORD1008"},{$pullAll:{items:["printer","ink cartridge"]}})
+
+db.ecom_orders.updateMany({},{$pullAll:{items:["printer","ink cartridge","mobile","headphones"]}})
+
+db.ecom_orders.updateMany({},{$pullAll:{items:["speaker","monitor","keyboard","laptop","router"]}})
+
+// if laptop is present in items array it wont be added else if would be added
+db.ecom_orders.updateOne({order_id:"ORD1002"},{$addToSet:{items:"laptop"}}) 
+
+
+// $rename, $currentDate
+
+db.employee.insertOne({"name":"Arpan","salary":2000000})
+
+db.employee.updateOne({"name":"Arpan"},{$rename:{"salary":"emp_salary"}})
+
+db.employee.updateOne({emp_name:"Arpan"},{$rename:{'emp_name':'name','new_salary':'salary'}})
+
+db.employee.insertOne({"name":"Sheetal","salary":2000000})
+
+db.employee.updateOne({"name":"Sheetal"},{$currentDate:{modified_date:{ $type: "timestamp" }}})

@@ -1,0 +1,64 @@
+// office_addresses
+
+let office_address1 = {
+    "place":"ITPL",
+    "street":"White Field",
+    "city":"Bengaluru",
+    "state":"Karnataka"
+}
+let office_address2 = {
+    "place":"E-Phase",
+    "street":"Neeladri",
+    "city":"Bengaluru",
+    "state":"Karnataka"
+}
+db.office_addresses.insertMany([office_address1,office_address2])
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('683200aa9900d51ce8748a84'),
+    '1': ObjectId('683200aa9900d51ce8748a85')
+  }
+}
+
+// Insert Employees
+
+let employee1 = {
+    "name":"Mahesh",
+    "designation":"Architect",
+    "office_address" :ObjectId('683200aa9900d51ce8748a84')
+}
+
+let employee2 = {
+    "name":"Hamidur",
+    "designation":"Developer",
+    "office_address" :ObjectId('683200aa9900d51ce8748a84')
+}
+
+let employee3 = {
+    "name":"Sheetal",
+    "designation":"Senior Developer",
+    "office_address" :ObjectId('683200aa9900d51ce8748a84')
+}
+
+let employee4 = {
+    "name":"Devi Yani",
+    "designation":"Tester",
+    "office_address" :ObjectId('683200aa9900d51ce8748a84')
+}
+
+let employee5 = {
+    "name":"Deepanjali",
+    "designation":"PM",
+    "office_address" :ObjectId('683200aa9900d51ce8748a84')
+}
+
+db.employee.insertMany([employee1,employee2,employee3,employee4,employee5])
+
+db.employee.updateMany({_id:{$in:[ObjectId('6832010f9900d51ce8748a89'),ObjectId('6832010f9900d51ce8748a8a')]}},{$set:{office_address:ObjectId('683200aa9900d51ce8748a85')}})
+
+db.office_addresses.find({_id:ObjectId('683200aa9900d51ce8748a85')})
+//Update second office place as "place":"Electronic City-Phase 2", 
+
+db.office_addresses.updateOne({_id:ObjectId('683200aa9900d51ce8748a85')},{$set:{"place":"Electronic City-Phase 2"}})

@@ -1,0 +1,49 @@
+let employee1 = {
+    "name":"Mahesh",
+    "designation":"Architect",
+    "office_address" :{
+        "place":"ITPL",
+        "street":"White Field",
+        "city":"Bengaluru",
+        "state":"Karnataka"
+    }
+}
+
+let employee2 = {
+    "name":"Hamidur",
+    "designation":"Developer"
+}
+
+let employee3 = {
+    "name":"Sheetal",
+    "designation":"Senior Developer"
+}
+
+let employee4 = {
+    "name":"Devi Yani",
+    "designation":"Tester"
+}
+
+let employee5 = {
+    "name":"Deepanjali",
+    "designation":"PM"
+}
+
+db.employee.insertMany([employee1,employee2,employee3,employee4,employee5])
+
+let office_address = {
+    "place":"ITPL",
+    "street":"White Field",
+    "city":"Bengaluru",
+    "state":"Karnataka"
+}
+
+db.employee.updateMany({},{$set:{office_address:office_address}})
+
+let office_address2 = {
+    "place":"E-Phase",
+    "street":"Neeladri",
+    "city":"Bengaluru",
+    "state":"Karnataka"
+}
+db.employee.updateMany({_id:{$in:[ObjectId('6831fa869900d51ce8748a82'),ObjectId('6831fa869900d51ce8748a83')]}},{$set:{office_address:office_address2}})
