@@ -1,0 +1,70 @@
+// Revision
+
+$set -> {$set :{<fieldName>: <value>}}
+$unset -> {$unset : {<fieldName> : ""}} // deletes the fieldName
+$inc -> {$inc :{<fieldName> : <value> }} // fieldName = fieldName + value
+$mul, $min, $max
+$rename -> {$rename :{<oldField>:<newField>}}
+$currentDate -> {$currentDate : {last_updated:true}}
+
+$push -> {$push :{<arrayField>:<value>}}
+$pop -> {$pop:{<arrayField>:1 or -1}}
+$pull -> {$pull :{<arrayField>: "speakers"}}
+$pullAll -> {$pullAll:{<arrayField>:[<val1>,<val2>,.....,<valn>]}}
+$addToSet -> {$addToSet : {<arrayField>:<value>}}
+
+//Relationship 
+One-to-One
+One-to-Many
+Many-to-Many
+
+
+// New Topics
+// using find() with
+$, $elemMatch, $slice
+
+// update
+$, $[]
+
+
+
+db.ecom_orders.insertOne({
+    order_id: "ORD1011", customer_name: "Raj Shetty", city: "Bangalore",
+    items: ["mobile","speaker", "case"], total_amount: 12000, payment_mode: "UPI",
+    status: "shipped", placed_at: new Date("2025-05-10T10:00:00Z")
+})
+
+db.ecom_orders.find({
+    items:{$all:["mobile","case"]}
+})
+
+db.ecom_orders.find({
+    items:{$size:2}
+})
+
+// $regex:/^m/i 
+
+db.ecom_orders.find({
+    items:{$elemMatch:{$regex:/^m/ }}
+})
+
+db.ecom_orders.find({
+    items:{$elemMatch:{$regex:/^M/i }}
+})
+
+// find orders where laptop is 1st value in items array or docs
+db.ecom_orders.find({
+    "items.1":"speaker"
+})
+
+
+db.ecom_orders.find({},{
+    "items":{$slice:1}
+})
+
+db.ecom_orders.find({},{
+    "items":{$slice:[2,10]}
+})
+
+// $each, $elemMatch
+
