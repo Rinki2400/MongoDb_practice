@@ -1,0 +1,93 @@
+// MongoDB Operators
+
+// Comparison Operators
+// $eq, $ne, $gt, $gte, $lt, #lte, $in, $nin
+
+db.train_bookings.find({"train_no": "54321"})
+
+db.train_bookings.countDocuments({"train_no": "54321"})
+
+db.train_bookings.find({"train_no":{$eq: "54321"}})
+
+db.train_bookings.countDocuments({"train_no":{$eq: "54321"}})
+
+db.train_bookings.find({"status":{$ne:"confirmed"}})
+
+db.train_bookings.countDocuments({"status":{$ne:"confirmed"}})
+
+db.train_bookings.find({"coach":{$eq:"S1"}})
+
+db.train_bookings.countDocuments({"coach":{$ne:"WL"}})
+
+// {"field":{$ne:"the value to compare"}}
+
+db.train_bookings.find({"age":{$gt:30}})
+
+db.train_bookings.find({"age":{$gte:30}})
+
+db.train_bookings.find({"age":{$lt:30}})
+
+db.train_bookings.find({"age":{$lte:30}})
+
+db.train_bookings.find({"source":{$in:["Mumbai","Bangalore","Delhi"]}})
+
+db.train_bookings.find({"destination":{$in:["Jaipur","Ahmedabad","Delhi"]}})
+
+// Logical Operators
+// $and, $or, $not, $nor
+
+// db.train_bookings.find({$and:[{cond1},{cond2},{cond3}]})
+
+db.train_bookings.find({$and:[{"destination":"Delhi"},{"status":"confirmed"}]});
+
+db.train_bookings.find({$and:[{'source': 'Delhi'},{'destination': 'Mumbai'},{'status': 'confirmed'}]})
+
+// db.train_bookings.find({$or:[{cond1},{cond2},{cond3}]})
+
+db.train_bookings.find({$or:[{"coach":"B1"},{"coach":"A1"}]})
+
+db.train_bookings.find({"coach":{$in:["B1","A1"]}})
+
+db.train_bookings.find({"age":{$not:{$gt:30}}})
+
+db.train_bookings.find({"age":{$not:{$lt:30}}})
+
+db.train_bookings.find({$nor:[{status:"cancelled"},{destination:"Mumbai"}]})
+
+db.train_bookings.find({$nor:[{status:"cancelled"},{destination:{$in:["Jaipur","Ahmedabad","Delhi"]}},
+{source:{$in:["Jaipur","Ahmedabad","Delhi","Bangalore"]}}]})
+
+// Element Operators
+// $exists, $type
+
+db.train_bookings.find({coach:{$exists:true}})
+
+db.train_bookings.find({hobbies:{$exists:false}})
+
+db.train_bookings.find({age:{$type:"int"}})
+
+db.train_bookings.find({gender:{$type:"string"}})
+
+
+// Evaluation Operators
+// $expr, $regex, $mod, $where
+
+db.train_bookings.find({$expr:{$gt:["$age",30]}})
+
+db.train_bookings.find({$expr:{$lt:["$age",30]}})
+
+db.train_bookings.find({name:{$regex:/^R/, $options:"i"}})
+
+db.train_bookings.find({name:{$regex:/^r/, $options:"i"}})
+
+db.train_bookings.find({name:{$regex:/^[A-G]/}})
+
+db.train_bookings.find({age:{$mod:[2,0]}})
+
+db.train_bookings.find({age:{$mod:[2,1]}})
+
+db.train_bookings.find({age:{$mod:[5,0]}})
+
+db.train_bookings.find({$where:"this.age > 30 && this.gender === 'Male'"})
+
+db.train_bookings.find({$where:"this.age > 30 && this.gender === 'Female'"})
