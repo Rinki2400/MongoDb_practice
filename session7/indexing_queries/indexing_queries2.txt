@@ -1,0 +1,59 @@
+ db.events.createIndex({"eventName":"text","description":"text"})
+
+ db.events.find({$text:{$search:"Carnival"}},{eventName:1,description:1,score:{$meta:"textScore"}})
+
+db.events.find({$text:{$search:"Test"}},{eventName:1,description:1,score:{$meta:"textScore"}}).sort({score:{$meta:"textScore"}})
+
+// 5. Geospatial Index
+
+// 2d indexing
+
+db.indian_landmarks.createIndex({"location_2d":"2d"})
+
+db.indian_landmarks.find({"location_2d":{$near:[77.2090,28.6010],$maxDistance:50}})
+
+// 2d sphere indexes
+
+db.indian_landmarks.createIndex({"location_2dsphere":"2dsphere"})
+
+db.indian_landmarks.getIndexes()
+
+db.indian_landmarks.find({"location_2dsphere":{$near:{$geometry:{"type":"Point","coordinates":[77.2090,28.6010]},$maxDistance:5000}}})
+
+// 6. Hashed Indexes
+
+db.cities.createIndex({"name":"hashed"})
+
+db.cities.getIndexes()
+
+db.cities.find({"name":"Bangalore"})
+
+db.cities.find({"name":"Bangalore"}).explain()
+
+db.cities.find({"name":"Bangalore"}).explain("executionStats")
+
+// Properties of Indexes
+
+// unique
+
+db.cities.createIndex({name:1},{unique:true})
+
+db.cities.insertOne({name:"Mumbai"})
+db.cities.insertOne({name:"Mumbai"})
+MongoServerError: E11000 duplicate key error collection: eventdb.cities index: name_1 dup key: { name: "Mumbai" }
+
+// partial indexing
+
+db.cities.createIndex({isMetropolitan:1},{partialFilterExpression:{isMetropolitan:true}})
+
+db.cities.find({isMetropolitan:true}).explain("executionStats")
+
+// sparse property
+
+db.cities.createIndex({population:1},{sparse:true})
+
+db.cities.find({"population":{$gt:100000}}).explain("executionStats")
+
+// 4 TTL only on date field
+
+db.cities.createIndex({"createdAt":1},{"expireAfterSeconds":10})
